@@ -17,7 +17,7 @@ class EventReceiver(object):
         """read a line from a socket"""
         s = self.file.readline()
         if not s:
-            raise EOFError
+            return None
         if s[-2:] == self.CRLF:
             s = s[:-2]
         elif s[-1:] in self.CRLF:

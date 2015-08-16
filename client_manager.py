@@ -26,5 +26,5 @@ class Client(object):
                 return "".join(chars)
 
     def send_event(self, event):
-        print 'Client send {}'.format(event)
+        print 'Client({}) send {}'.format(self.id, event)
         self.conn.send(event + '\n')

@@ -10,8 +10,9 @@ client_sock2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_sock2.connect(('0.0.0.0', 9099))
 client_sock2.sendall('321\n')
 
-server_sock.sendall('1|F|321|123\r\n')
+server_sock.sendall("1|F|321|123\r\n")
 
+server_sock.sendall("2|P|123|321\r\n")
 
 
 

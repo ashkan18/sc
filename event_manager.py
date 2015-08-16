@@ -59,7 +59,7 @@ class EventManager(object):
         seq_id = data_array[0]
         from_user_id = data_array[2].strip()
         if from_user_id in self.follow_dict:
-            for follower_id in self.follow_dict[from_user_id] if followe_id in self.channels:
+            for follower_id in filter(lambda x: x in self.clients, self.follow_dict[from_user_id]):
                 self.channels.setdefault(follower_id, MinHeap()).push(seq_id, '|'.join(data_array))
                 self.notify_client(follower_id)
 
