@@ -27,4 +27,4 @@ class Client(object):
 
     def send_event(self, event):
         print 'Client send {}'.format(event)
-        self.conn.sendall(event + '\n')
+        self.conn.send(event + '\n')
