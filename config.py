@@ -5,5 +5,5 @@ __author__ = 'ashkan'
 CLIENT_PORT = 9099
 SERVICE_PORT = 9090
 EVENT_DELIMITER = "|"
-LOG_LEVEL = logging.INFO
+LOG_LEVEL = logging.WARNING
 

@@ -23,6 +23,9 @@ class EventManager(object):
         :param event: config.EVENT_DELIMITER delimited string of event
         """
         event_fields = event.rstrip().split(config.EVENT_DELIMITER)
+
+        assert len(event_fields) > 1
+
         event_type = event_fields[1].strip()
         event_func_name = '{}_event'.format(event_type.lower())
 
@@ -33,6 +36,20 @@ class EventManager(object):
         effected_users = event_func(*event_fields[2:])
         if effected_users:
             self.inform_users(effected_users, event)
+
+    def add_client(self, client):
+        """
+        Adds a new client to list of clients
+        :param client: ClientHandler of this client
+        """
+        self.clients[client.user_id] = client
+
+    def remove_client(self, user_id):
+        """
+        Removes a client from the list of existing clients
+        :param user_id: user_id of the client we want to remove
+        """
+        del self.clients[user_id]
 
     def f_event(self, from_user, to_user):
         """
@@ -88,20 +105,6 @@ class EventManager(object):
             return self.followers[from_user]
         else:
             return []
-
-    def add_client(self, client):
-        """
-        Adds a new client to list of clients
-        :param client: ClientHandler of this client
-        """
-        self.clients[client.user_id] = client
-
-    def remove_client(self, user_id):
-        """
-        Removes a client from the list of existing clients
-        :param user_id: user_id of the client we want to remove
-        """
-        del self.clients[user_id]
 
     def inform_users(self, users, event):
         """
