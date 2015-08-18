@@ -22,3 +22,27 @@ In `server.py` we use Python SocketServer builtin library to creat a new SocketS
 `event_manager.py` holds EventManager which is core logic of FollowerMaze. It has a hash of current connected clients and has methods for add new client and remove them. Key of this hash is client user id and value is the actual ClientHandler object. It also has a follower hash which it's key is a user id and value is list of follower's user_ids.
 
 EventManager receives events from event server and process them. Each supported event has a method which handles any action needed for event and returns list of affected users. And then sends the event to affected users. 
+
+## Run
+In order to start the app run the following:
+```shell
+python main.py
+```
+This will start both server and client sockets
+
+## Configurations
+Most of the configurations are in `config.py`, you can modify following
+```python
+CLIENT_PORT = 9099
+SERVICE_PORT = 9090
+EVENT_DELIMITER = "|"
+LOG_LEVEL = logging.WARNING
+```
+
+## Tests
+Currently I have tests for EventManager, you can run them by
+```shell
+python /tests/test-event-manager.py
+```
+
+
